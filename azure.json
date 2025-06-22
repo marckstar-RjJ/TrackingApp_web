@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appName": {
+      "type": "string",
+      "defaultValue": "boa-tracking-web",
+      "metadata": {
+        "description": "The name of the application"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "The location in which the resources should be deployed"
+      }
+    },
+    "sku": {
+      "type": "string",
+      "defaultValue": "Free",
+      "allowedValues": [
+        "Free",
+        "Standard"
+      ],
+      "metadata": {
+        "description": "The pricing tier of the Static Web App"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/staticSites",
+      "apiVersion": "2021-02-01",
+      "name": "[parameters('appName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "[parameters('sku')]"
+      },
+      "properties": {
+        "branch": "main",
+        "repositoryToken": "[parameters('repositoryToken')]",
+        "repositoryUrl": "[parameters('repositoryUrl')]",
+        "buildProperties": {
+          "appLocation": "/",
+          "apiLocation": "api",
+          "appArtifactLocation": "build"
+        }
+      }
+    }
+  ]
+} 

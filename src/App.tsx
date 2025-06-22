@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './routes';
+import { AuthProvider } from './contexts/AuthContext';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AuthProvider>
+        <div className="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat bg-fixed" 
+             style={{ backgroundImage: 'url(/images/fondo_boa.png)' }}>
+          <Header />
+          <main className="flex-grow">
+            <AppRoutes />
+          </main>
+          <Footer />
+        </div>
+      </AuthProvider>
+    </Router>
   );
-}
+};
 
 export default App;

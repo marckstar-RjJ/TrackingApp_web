@@ -1,0 +1,109 @@
+{
+  "users": [
+    {
+      "id": "user1",
+      "email": "customer@example.com",
+      "password": "SecurePassword123!",
+      "firstName": "Juan",
+      "lastName": "Perez",
+      "phone": "59170012345",
+      "role": "CUSTOMER",
+      "isActive": true,
+      "createdAt": "2023-01-01T00:00:00Z",
+      "updatedAt": "2023-01-01T00:00:00Z",
+      "lastLogin": "2023-10-26T00:00:00Z"
+    },
+    {
+      "id": "admin1",
+      "email": "202001810@est.umss.edu",
+      "password": "BoaAdmin2024!",
+      "firstName": "Admin",
+      "lastName": "User",
+      "phone": "59177788899",
+      "role": "ADMIN",
+      "isActive": true,
+      "createdAt": "2023-01-01T00:00:00Z",
+      "updatedAt": "2023-01-01T00:00:00Z",
+      "lastLogin": "2023-10-26T00:00:00Z"
+    },
+    {
+      "id": "staff1",
+      "email": "staff@example.com",
+      "password": "StaffPassword123!",
+      "firstName": "Staff",
+      "lastName": "Member",
+      "phone": "59166677788",
+      "role": "STAFF",
+      "isActive": true,
+      "createdAt": "2023-01-01T00:00:00Z",
+      "updatedAt": "2023-01-01T00:00:00Z",
+      "lastLogin": "2023-10-26T00:00:00Z"
+    }
+  ],
+  "shipments": [
+    {
+      "id": "SHIP001",
+      "trackingNumber": "BOA5432109876",
+      "senderName": "Juan Perez",
+      "senderAddress": "Av. Principal 123, La Paz, Bolivia",
+      "recipientName": "Maria Garcia",
+      "recipientAddress": "Calle Falsa 456, Madrid, España",
+      "packageType": "Documentos",
+      "weightKg": 0.5,
+      "dimensionsCm": "30x20x5",
+      "description": "Documentos importantes para trámites",
+      "status": "En tránsito",
+      "history": [
+        { "timestamp": "2023-10-26T10:00:00Z", "location": "La Paz, Bolivia", "status": "Recogido" },
+        { "timestamp": "2023-10-26T14:30:00Z", "location": "Aeropuerto El Alto, La Paz", "status": "En aduana de origen" },
+        { "timestamp": "2023-10-27T08:00:00Z", "location": "Madrid, España", "status": "En aduana de destino" }
+      ],
+      "estimatedDelivery": "2023-11-01T12:00:00Z"
+    },
+    {
+      "id": "SHIP002",
+      "trackingNumber": "BOA1122334455",
+      "senderName": "Ana Lopez",
+      "senderAddress": "Calle Secundaria 789, Santa Cruz, Bolivia",
+      "recipientName": "Carlos Ramirez",
+      "recipientAddress": "Av. Siempre Viva 742, Cochabamba, Bolivia",
+      "packageType": "Paquete pequeño",
+      "weightKg": 2.1,
+      "dimensionsCm": "40x30x15",
+      "description": "Libros y artículos personales",
+      "status": "Entregado",
+      "history": [
+        { "timestamp": "2023-10-25T09:00:00Z", "location": "Santa Cruz, Bolivia", "status": "Recogido" },
+        { "timestamp": "2023-10-25T13:00:00Z", "location": "Aeropuerto Viru Viru, Santa Cruz", "status": "En tránsito" },
+        { "timestamp": "2023-10-25T18:00:00Z", "location": "Cochabamba, Bolivia", "status": "Entregado" }
+      ],
+      "estimatedDelivery": "2023-10-25T18:00:00Z"
+    }
+  ],
+  "requests": [
+    {
+      "id": "REQ001",
+      "userId": "user1",
+      "senderName": "Juan Perez",
+      "senderAddress": "Av. Principal 123, La Paz, Bolivia",
+      "recipientName": "Maria Garcia",
+      "recipientAddress": "Calle Falsa 456, Madrid, España",
+      "packageType": "Documentos",
+      "weightKg": 0.5,
+      "dimensionsCm": "30x20x5",
+      "description": "Documentos importantes para trámites",
+      "status": "Pendiente",
+      "requestDate": "2023-10-26T09:00:00Z"
+    }
+  ],
+  "returns": [
+    {
+      "id": "RET001",
+      "trackingNumber": "BOA5432109876",
+      "userId": "user1",
+      "reason": "Vuelo retrasado",
+      "status": "Pendiente",
+      "requestDate": "2023-10-28T10:00:00Z"
+    }
+  ]
+} 
