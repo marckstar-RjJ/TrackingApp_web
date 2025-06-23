@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_CONFIG } from '../config/api';
 
 interface ReturnRequest {
   id: number;
@@ -26,7 +27,7 @@ const AdminReturnRequests: React.FC = () => {
   const fetchRequests = useCallback(async (status: string) => {
     setIsLoading(true);
     try {
-      let url = `http://localhost:3000/api/returns/requests`;
+      let url = `${API_CONFIG.getReturnsUrl()}/requests`;
       if (status !== 'all') {
         url += `?status=${status}`;
       }
@@ -59,9 +60,9 @@ const AdminReturnRequests: React.FC = () => {
   };
 
   const handleApprove = async (id: number) => {
-    if (confirm("¿Estás seguro de que deseas aprobar esta devolución? El paquete original será eliminado.")) {
+    if (window.confirm("¿Estás seguro de que deseas aprobar esta devolución? El paquete original será eliminado.")) {
       try {
-        const res = await fetch(`http://localhost:3000/api/returns/requests/${id}/approve`, { 
+        const res = await fetch(`${API_CONFIG.getReturnsUrl()}/requests/${id}/approve`, { 
           method: 'PUT' 
         });
         if (res.ok) {
@@ -82,7 +83,7 @@ const AdminReturnRequests: React.FC = () => {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:3000/api/returns/requests/${selectedRequest.id}/reject`, {
+      const res = await fetch(`${API_CONFIG.getReturnsUrl()}/requests/${selectedRequest.id}/reject`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ comment: rejectionComment }),

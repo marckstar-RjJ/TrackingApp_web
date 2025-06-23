@@ -12,6 +12,30 @@ export interface TenantSettings {
   timezone: string;
 }
 
+export interface Package {
+  id: number;
+  tracking_number: string;
+  description: string;
+  status: string;
+  location: string;
+  sender_name: string;
+  recipient_name: string;
+  origin: string;
+  destination: string;
+  weight: number;
+  events?: PackageEvent[];
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PackageEvent {
+  id: number;
+  event_type: string;
+  description: string;
+  location: string;
+  timestamp: string;
+}
+
 export interface TrackingInfo {
   id: string;
   trackingNumber: string;
