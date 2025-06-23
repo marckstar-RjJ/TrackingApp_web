@@ -26,7 +26,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:test": "node scripts/build-and-test.js",
+    "serve:build": "npx serve -s build",
+    "type-check": "npx tsc --noEmit",
+    "predeploy": "npm run build:test"
   },
   "eslintConfig": {
     "extends": [

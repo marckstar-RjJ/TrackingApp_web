@@ -1,6 +1,7 @@
 import { User, RegisterCredentials, LoginCredentials, UserRole } from '../types/auth';
 
-const API_BASE_URL = 'http://localhost:3000/api';
+// Usar variable de entorno para la URL del backend, con fallback a localhost
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api';
 
 class RealDataService {
   private static instance: RealDataService;
@@ -118,22 +119,14 @@ class RealDataService {
     }
   }
 
-  // Obtener todos los usuarios (solo para admin)
+  // Obtener todos los usuarios (para verificación de token)
   async getAllUsers(): Promise<User[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/users`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
+      const response = await fetch(`${API_BASE_URL}/users`);
       if (!response.ok) {
-        throw new Error('No se pudieron obtener los usuarios');
+        throw new Error('Error al obtener usuarios');
       }
-
       const data = await response.json();
-      
       return data.map((user: any) => ({
         id: user.id.toString(),
         email: user.email,
@@ -144,9 +137,9 @@ class RealDataService {
         createdAt: new Date(user.created_at),
         updatedAt: new Date(),
       }));
-    } catch (error: any) {
-      console.error('Error obteniendo usuarios:', error);
-      throw error;
+    } catch (error) {
+      console.error('Error al obtener usuarios:', error);
+      return [];
     }
   }
 }
